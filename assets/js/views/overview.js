@@ -1,15 +1,27 @@
 var OverviewView = Backbone.View.extend({
   initialize: function() {
     this.render();
+
+    navigator.id.watch({
+      loggedInEmail: null,
+      onlogin: function(assertion) {
+        console.log(assertion);
+        irc.socket.emit('login_persona', {
+          assertion: assertion,
+        });
+      },
+      onlogout: function() { }
+    });
   },
 
   events: {
     'click #connect-button': 'connect',
     'click #connect-more-options-button': 'more_options',
     'click #login-button': 'login_register',
+    'click .persona-button': 'login_persona',
     'click #register-button': 'login_register',
     'keypress': 'connectOnEnter',
-    'click #connect-secure': 'toggle_ssl_options'
+    'click #connect-secure': 'toggle_ssl_options',
   },
 
   el: '.content',
@@ -57,15 +69,15 @@ var OverviewView = Backbone.View.extend({
     selfSigned = $('#connect-selfSigned').is(':checked'),
     rejoin = $('#connect-rejoin').is(':checked'),
     password = $('#connect-password').val();
-    
+
     if (!server) {
       $('#connect-server').closest('.control-group').addClass('error');
     }
-    
+
     if (!nick) {
       $('#connect-nick').closest('.control-group').addClass('error');
     }
-    
+
     if (nick && server) {
       $('form').append(ich.load_image());
       $('#connect-button').addClass('disabled');
@@ -99,17 +111,17 @@ var OverviewView = Backbone.View.extend({
 
     var username = $('#' + action + '-username').val();
     var password = $('#' + action + '-password').val();
- 
+
     if (!username) {
       $('#' + action + '-username').closest('.clearfix').addClass('error');
       $('#' + action + '-username').addClass('error');
     }
-    
+
     if (!password) {
       $('#' + action + '-password').closest('.clearfix').addClass('error');
       $('#login-password').addClass('error');
     }
-    
+
     if(username && password){
       $('form').append(ich.load_image());
       $('#' + action + '-button').addClass('disabled');
@@ -119,6 +131,10 @@ var OverviewView = Backbone.View.extend({
       username: username,
       password: password
     });
+  },
+
+  login_persona: function(event) {
+    navigator.id.request();
   },
 
   toggle_ssl_options: function(event) {

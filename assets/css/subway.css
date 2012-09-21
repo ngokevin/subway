@@ -105,6 +105,14 @@ html { overflow: hidden; }
   margin-left: 10px;
 }
 
+.persona-button {
+  left: 10px;
+  top: 10px;
+}
+.persona-button: {
+  color: none;
+}
+
 #user-box {
   margin-top: 10px;
   background: #434950;

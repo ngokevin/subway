@@ -6,11 +6,13 @@ html
     != css('bootstrap.min')
     != css('subway')
     != css('subway-mobile')
+    != css('persona-buttons')
 
     script
       var ENV = '#{env}',
           PORT = #{port};
     != js('client')
+    != js('https://login.persona.org/include.js')
     include templates
   body
     block content

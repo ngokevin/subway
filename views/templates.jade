@@ -24,7 +24,7 @@ script(id="overview_home", type="text/html")
       span Settings
     li.overview_button#login
       img(src="/assets/images/login.svg")
-      span Login
+      span Log In
     li.overview_button#register
       img(src="/assets/images/register.svg")
       span Register
@@ -82,7 +82,10 @@ script(id="overview_login", type="text/html")
     .control-group
       label(for="login-password") Password
       input#login-password(type="password")
-    a(id="login-button", class="btn btn-primary", type="submit") Login
+    a(id="login-button", class="btn btn-primary", type="submit") Log In
+    a(href="#").persona-button.dark
+      span Log in with Persona
+
 
 script(id="overview_register", type="text/html")
   #home_parent
