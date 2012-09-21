@@ -5,12 +5,15 @@ var OverviewView = Backbone.View.extend({
     navigator.id.watch({
       loggedInEmail: null,
       onlogin: function(assertion) {
-        console.log(assertion);
+        console.log('login');
         irc.socket.emit('login_persona', {
           assertion: assertion,
         });
       },
-      onlogout: function() { }
+      onlogout: function() {
+        console.log('logout');
+        irc.socket.disconnect();
+      }
     });
   },
 
@@ -18,7 +21,7 @@ var OverviewView = Backbone.View.extend({
     'click #connect-button': 'connect',
     'click #connect-more-options-button': 'more_options',
     'click #login-button': 'login_register',
-    'click .persona-button': 'login_persona',
+    'click #persona-login': 'login_persona',
     'click #register-button': 'login_register',
     'keypress': 'connectOnEnter',
     'click #connect-secure': 'toggle_ssl_options',

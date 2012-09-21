@@ -83,7 +83,7 @@ script(id="overview_login", type="text/html")
       label(for="login-password") Password
       input#login-password(type="password")
     a(id="login-button", class="btn btn-primary", type="submit") Log In
-    a(href="#").persona-button.dark
+    a(href="#").persona-button.dark#persona-login
       span Log in with Persona
 
 
@@ -117,6 +117,8 @@ script(id="chat", type="text/html")
       #user-bar.bar
         .titlebar
           span(class='window_title') User List
+          a(href="#").persona-button.dark#persona-logout
+            span Sign Out
       #user-list.bar
     #user-window-toggle
       img(src="/assets/images/register.svg")

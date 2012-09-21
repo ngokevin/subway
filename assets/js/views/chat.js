@@ -32,6 +32,10 @@ var ChatView = Backbone.View.extend({
     this.handleScroll();
     this.handleClick();
     $('#chat-input').focus();
+
+    $('#persona-logout').click(function() {
+      navigator.id.logout();
+    });
     return this;
   },
 

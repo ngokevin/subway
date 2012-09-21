@@ -105,12 +105,14 @@ html { overflow: hidden; }
   margin-left: 10px;
 }
 
-.persona-button {
+#persona-login {
   left: 10px;
   top: 10px;
 }
-.persona-button: {
-  color: none;
+#persona-logout {
+  bottom: 3px;
+  right: 5px;
+  float: right;
 }
 
 #user-box {
